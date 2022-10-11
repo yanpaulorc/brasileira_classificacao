@@ -1,10 +1,11 @@
 import 'package:brasileirao_2022/repository/campeonato_repository.dart';
 
+import '../model/times.dart';
+
 class CampeonatoController {
   final _campeonatoRepository = CampeonatoRepository();
 
-  campeonato() async {
-    final campeonato = await _campeonatoRepository.campeonato();
-    campeonato.forEach(print);
+  Future<List<Times>> campeonato() async {
+    return await _campeonatoRepository.campeonato();
   }
 }
