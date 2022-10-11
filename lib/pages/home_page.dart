@@ -1,3 +1,4 @@
+import 'package:brasileirao_2022/repository/campeonato_repository.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,8 +10,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  void initState() {
+  initState() {
     super.initState();
+  }
+
+  _getCampeonato() async {
+    final times = await CampeonatoRepository().campeonato();
+    return times;
   }
 
   @override
@@ -19,12 +25,24 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Home page'),
       ),
-      body: ListView.builder(
-        itemCount: 1,
-        itemBuilder: (BuildContext context, int index) {
-          return const ListTile(
-            title: Text('times'),
-          );
+      body: FutureBuilder(
+        future: _getCampeonato(),
+        // initialData: InitialData,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (BuildContext context, int index) {
+                return const Text('teste');
+              },
+            );
+          }
+          print(snapshot.data.length);
+          return const Text('data');
         },
       ),
     );

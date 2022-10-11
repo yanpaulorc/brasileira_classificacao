@@ -1,4 +1,4 @@
-import 'package:brasileirao_2022/repositories/campeonato_repository.dart';
+import 'package:brasileirao_2022/repository/campeonato_repository.dart';
 
 class CampeonatoController {
   final _campeonatoRepository = CampeonatoRepository();

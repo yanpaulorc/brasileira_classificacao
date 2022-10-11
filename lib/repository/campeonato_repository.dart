@@ -11,8 +11,6 @@ class CampeonatoRepository {
     final responseMap = jsonDecode(response.body);
     final dadosMap = responseMap['response']['standings']['rows'];
     final List dadosLista = dadosMap;
-    return dadosLista.map<Times>((times) {
-      return Times.fromMap(times);
-    }).toList();
+    return dadosLista.map<Times>((times) => Times.fromMap(times)).toList();
   }
 }
